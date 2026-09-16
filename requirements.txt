@@ -1,0 +1,12 @@
+# Core numerical processing
+numpy>=1.24
+
+# YOLO-pose extraction
+ultralytics>=8.3
+opencv-python>=4.8
+
+# Embedding visualization
+scikit-learn>=1.4
+
+# YouTube Shorts downloader
+yt-dlp>=2024.1

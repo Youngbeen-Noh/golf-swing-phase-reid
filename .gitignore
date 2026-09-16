@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+# data and experiment outputs are never part of this repository
+data/
+experiments_archive/
+results_*.csv
+*.pt
+*.pth
+*.npz
+*.pkl
