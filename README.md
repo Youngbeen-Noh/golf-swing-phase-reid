@@ -3,8 +3,8 @@
 Analysis code for the manuscript:
 
 > Noh, Y.-B.; Jeong, H.-Y.; Byun, J.-E.; Hwang, K.-i.
-> *Learning Golf Swing Signatures from Monocular 2D Pose: Closed-Set
-> Professional Re-Identification with Phase-Level Interpretability.*
+> *Learning Professional Golf Swing Signatures from Monocular 2D Pose:
+> A Controlled Study of Coordinate Normalization and Phase Decomposition.*
 > Submitted to *Sensors* (MDPI).
 
 The pipeline extracts 18-joint 2D pose sequences from monocular golf swing
@@ -17,13 +17,18 @@ and phase-wise similarity profiles.
 
 ## Data availability
 
-No data are included in this repository. The original videos are
-third-party copyrighted content and cannot be redistributed. The extracted
-2D pose sequences, split manifests, raw result files, and the expert
-rosters (withheld here under the paper's anonymization policy — experts are
-referenced only by anonymized IDs) are available from the corresponding
-author upon reasonable request. Scripts expect the directory layout
-`data/Golf/{videos,jsons,tensor}/...` described in `ENVIRONMENT.md`.
+The anonymized extracted 2D pose sequences (450 clips, 25 experts) and the
+validation / held-out-test split manifests **are included** in this
+repository under `data/Golf/jsons/` and `data/Golf/splits/` — see
+[`data/README.md`](data/README.md) for the schema and the anonymization
+policy (experts are referenced only as `expert_01`–`expert_25`; the
+identity mapping is not released). The original videos are third-party
+copyrighted content and cannot be redistributed; raw result files are
+available from the corresponding author upon reasonable request. Scripts
+expect the directory layout `data/Golf/{videos,jsons,tensor}/...` described
+in `ENVIRONMENT.md`; with the released jsons in place, everything from
+`02_json_to_tensor.py` onward can be reproduced (only `01-1` pose
+extraction requires the videos).
 
 ## Pipeline overview (script numbering = execution order)
 
@@ -47,9 +52,12 @@ author upon reasonable request. Scripts expect the directory layout
 ## Environment
 
 See `ENVIRONMENT.md` and `requirements.txt` (Python 3.12, PyTorch 2.6.0 +
-CUDA 12.4, Ultralytics 8.3.53 for pose extraction). Statistical tests use a
-two-level hierarchical bootstrap (queries × seeds, 10,000 resamples); see
-`19_paired_significance_hierarchical.py`.
+CUDA 12.4; pose extraction uses the official yolo26l-pose.pt weights, checkpoint version Ultralytics 8.3.222 -- note versions before YOLO26 support cannot load these weights). Statistical tests in
+the manuscript use a crossed (seed × query) bootstrap (10,000 resamples,
+shared resampled indices across compared conditions, Holm correction); see
+`30_crossed_bootstrap_stats.py`. `19_paired_significance_hierarchical.py`
+implements the earlier two-level hierarchical scheme and is kept for
+reference.
 
 ## License
 

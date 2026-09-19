@@ -2,8 +2,11 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
-# data and experiment outputs are never part of this repository
-data/
+# videos, tensors, and experiment outputs are never part of this repository;
+# the released anonymized pose jsons + split manifests under data/Golf/ ARE tracked
+data/Golf/videos/
+data/Golf/tensor/
+data/Golf/experiments/
 experiments_archive/
 results_*.csv
 *.pt

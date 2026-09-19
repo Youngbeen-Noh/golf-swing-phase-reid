@@ -1,8 +1,8 @@
 # Core numerical processing
 numpy>=1.24
 
-# YOLO-pose extraction
-ultralytics>=8.3
+# YOLO-pose extraction (yolo26l-pose.pt needs YOLO26 support; 8.3.53 and earlier cannot load it)
+ultralytics>=8.3.222
 opencv-python>=4.8
 
 # Embedding visualization
